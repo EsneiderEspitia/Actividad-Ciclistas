@@ -1,41 +1,69 @@
 package com.example;
 
+/**
+ * Clase abstracta que representa a un ciclista genérico en una carrera ciclística.
+ * Contiene los atributos comunes y el método abstracto imprimirTipo() que deben
+ * implementar las subclases según su especialidad.
+ */
 public abstract class Ciclista {
+    // Atributos privados
     private int identificador;
     private String nombre;
-    private int tiempoAcumulado;
+    private int tiempoAcumulado = 0; // Tiempo acumulado de carrera en minutos, inicializado en cero
 
+    /**
+     * Constructor de la clase abstracta Ciclista.
+     * 
+     * @param identificador Identificador único del ciclista (número de dorsal).
+     * @param nombre Nombre completo del ciclista.
+     */
     public Ciclista(int identificador, String nombre) {
         this.identificador = identificador;
         this.nombre = nombre;
-        this.tiempoAcumulado = 0; // Valor inicial cero según el enunciado
+        this.tiempoAcumulado = 0;
     }
 
-    // Método abstracto obligatorio para las subclases
-    public abstract String imprimirTipo();
+    /**
+     * Método abstracto que devuelve el tipo o especialidad del ciclista.
+     * Debe ser implementado obligatoriamente por cada subclase concreta.
+     * 
+     * @return Cadena que describe el tipo de ciclista.
+     */
+    protected abstract String imprimirTipo();
 
-    // Getters y Setters
-    public int getIdentificador() {
+    // Métodos getters y setters (métodos protegidos según especificación)
+
+    protected int getIdentificador() {
         return identificador;
     }
 
-    public void setIdentificador(int identificador) {
+    protected void setIdentificador(int identificador) {
         this.identificador = identificador;
     }
 
-    public String getNombre() {
+    protected String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    protected void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public int getTiempoAcumulado() {
+    protected int getTiempoAcumulado() {
         return tiempoAcumulado;
     }
 
-    public void setTiempoAcumulado(int tiempoAcumulado) {
+    protected void setTiempoAcumulado(int tiempoAcumulado) {
         this.tiempoAcumulado = tiempoAcumulado;
+    }
+
+    /**
+     * Muestra en consola los datos generales del ciclista.
+     * Puede ser invocado por las subclases mediante super.imprimir().
+     */
+    protected void imprimir() {
+        System.out.println("Identificador: " + identificador);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Tiempo Acumulado: " + tiempoAcumulado + " minutos");
     }
 }
